@@ -5,7 +5,7 @@ class Main extends React.Component {   //page1クラスにReact.Componentを継�
     render() {                          //画面表示の為のrenderメソッドを定義する
         return (
             <div>
-                HelloPage1!!!
+                HelloPage1!!!!
             </div>
         );
     }

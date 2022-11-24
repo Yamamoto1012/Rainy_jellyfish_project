@@ -2,6 +2,8 @@ import React from 'react'
 import "../reset.css"
 import "./css/joinStyle.css"
 
+import qrIcon from '../images/qricon.PNG'
+
 function JoinRoom() {
   return (
     <div>
@@ -19,7 +21,9 @@ function JoinRoom() {
                     <div className='text'>OR</div>
                     <div className='line'></div>
                 </div>
-                QRを読み取る
+                <div className='qrimage'>
+                  <img src={qrIcon}></img>
+                </div>
                 </div>
             </div>
     </div>

@@ -12,6 +12,8 @@ import JoinRoom from './components/JoinRoom';
 
 
 
+
+
 // プログラムの一番上、ヘッダー部分だけを実装するプログラム
 function App() {
   return (
@@ -21,8 +23,7 @@ function App() {
       <h1 class="header-logo">MySeat!</h1>
         <nav class="header-nav">
             <ul class="header-list">
-                <li class="header-item"><a href="">自習室</a></li>
-                <li class="header-item header01-item--contact"><a href="">なんか</a></li>
+                <li class="header-item"><a href="">Developer</a></li>
             </ul>
         </nav>
       </header>
@@ -46,6 +47,7 @@ function App() {
           <MainScreen />
         </Route>
         <Route path='/join'>
+
           <JoinRoom />
         </Route>
       </Switch>

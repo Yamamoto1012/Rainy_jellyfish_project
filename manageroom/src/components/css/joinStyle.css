@@ -16,11 +16,12 @@
     right: 0;
     margin: auto;
     width: 300px;
-    height: 70%;
-    border: 12px dashed beige;
+    height: 500px;
+    border: 12px dashed #FFE15D;
+    border-radius: 36px;
   }
   .submitRoomKey{
-    background-color: rgb(255, 44, 118);
+    background-color: #DC3535;
     color: white;
     height: auto;
     width: auto;
@@ -67,5 +68,14 @@
     color: gray;
     font-size: 0.8rem;
     height: auto;
+  }
+
+  .qrimage{
+    height: 200px;
+    width: 100%;
+  }
+  .qrimage img{
+    margin: 0 auto;
+    padding: 25px;
   }
   

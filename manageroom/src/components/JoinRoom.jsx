@@ -5,11 +5,12 @@ import "./css/joinStyle.css"
 import qrIcon from '../images/qricon.PNG'
 
 function JoinRoom() {
+  
   return (
     <div>
           <div className="card">
                 <div className='content'>
-                <h1>My Seat!</h1>
+                <h1>Check Teritory!</h1>
                 <input type="name" placeholder="room seacret word.."/>
                 
                 <div className='submitRoomKey'>混雑状況を確認</div>

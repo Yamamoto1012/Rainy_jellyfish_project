@@ -47,12 +47,13 @@
     border: 0.1rem solid;
   }
   .sectionline{
-    padding: 12px 36px;
+    padding: 12px 36px 0px 36px;
     width: 100%;
     height: auto;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    
   }
   .sectionline .line{
     width: 55px;
@@ -71,7 +72,7 @@
   }
 
   .qrimage{
-    height: 200px;
+    height: 170px;
     width: 100%;
   }
   .qrimage img{

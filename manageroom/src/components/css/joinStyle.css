@@ -40,11 +40,13 @@
     
   }
   input{
-    height: auto;
-    height: 30px;
+    width: 210px;
+    height: 40px;
     border-radius: 12px;
     padding: 12px;
     border: 0.1rem solid;
+
+    
   }
   .sectionline{
     padding: 12px 36px 0px 36px;

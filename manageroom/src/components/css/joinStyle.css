@@ -28,7 +28,10 @@
     margin: 18px 36px 8px 36px;
     padding: 12px;
     border-radius: 32px;
-  
+  }
+  .submitRoomKey:hover{
+    background-color: #b72a2a;
+    cursor:pointer;
   }
   h1{
     padding: 30px;
@@ -76,6 +79,9 @@
   .qrimage{
     height: 170px;
     width: 100%;
+  }
+  .qrimage:hover{
+    cursor: pointer;
   }
   .qrimage img{
     margin: 0 auto;

@@ -4,12 +4,16 @@ import "./css/joinStyle.css"
 import { initializeApp } from "firebase/app";
 
 import qrIcon from '../images/qricon.PNG'
-import {getDatabase ,ref ,set} from "firebase/database";
+import {getDatabase ,ref ,set,onValue} from "firebase/database";
+import { useState } from 'react';
+import QrReader from 'react-qr-reader';
 
 
 
 
 const JoinRoom = () =>{
+
+  const [keySt,inputKey] = useState("");
 
   const upData = () =>{
     const db = getDatabase();
@@ -20,15 +24,33 @@ const JoinRoom = () =>{
     });
   }
 
+  const isExist = () => {
+    const db = getDatabase();
+    const getvalue = ref(db,"users/aho/boke");
+    onValue(getvalue,(snapshot) =>{
+      const data = snapshot.val()
+      
+      if(data == null){
+        alert("data nothing")
+      }else{
+        if(data != keySt){
+          alert("miss your key")
+        }else{
+          alert("confilm")
+        }
+      }
+    })
+  }
+
 
     return (
       <div>
             <div className="card">
                   <div className='content'>
                   <h1>Check!</h1>
-                  <input type="name" placeholder="room seacret word.."/>
+                  <input type="name" placeholder="room seacret word.." value={keySt} onChange={(event) => inputKey(event.target.value)}/>
                   
-                  <div className='submitRoomKey'>混雑状況を確認</div>
+                  <div className='submitRoomKey' onClick={isExist}>混雑状況を確認</div>
                   <div className="gray">
                       <a href="./create">Create a Seacret MySeat Profile</a>
                   </div>

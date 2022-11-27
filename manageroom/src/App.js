@@ -64,7 +64,7 @@ function App() {
 
         <Route path='/main' element={<MainScreen/>}/>
           {/* /mainのアドレスが入力されたらMainScreen（Main.jsx)に移動する */}
-        <Route path='/join' element={<HomeScreen/>}/>
+        {/* <Route path='/join' element={<HomeScreen/>}/> */}
       </Routes>
     </div>
     </BrowserRouter>

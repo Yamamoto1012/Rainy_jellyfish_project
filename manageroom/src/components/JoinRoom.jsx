@@ -2,11 +2,13 @@ import React from 'react'
 import "../reset.css"
 import "./css/joinStyle.css"
 import { initializeApp } from "firebase/app";
+import {Link} from "react-router-dom";
 
 import qrIcon from '../images/qricon.PNG'
 import {getDatabase ,ref ,set,onValue} from "firebase/database";
 import { useState } from 'react';
 import QrReader from 'react-qr-reader';
+import Main from './Main';
 
 
 
@@ -36,7 +38,9 @@ const JoinRoom = () =>{
         if(data != keySt){
           alert("miss your key")
         }else{
-          alert("confilm")
+          //画面遷移
+          window.location.href="/main"
+
         }
       }
     })

@@ -26,9 +26,11 @@ header {
   font-weight: bold;
 }
 
-.header-item--contact {
-  background-color: #2486d1;
-  color: #fff;
-  padding: 6px 16px;
-  border-radius: 6px;
+.header-item{
+  padding: 8px 18px;
+  border-radius: 12px;
+  background-color: #ff8400;
+}
+.header-item a {
+  color: white;
 }

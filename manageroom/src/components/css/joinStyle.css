@@ -28,7 +28,10 @@
     margin: 18px 36px 8px 36px;
     padding: 12px;
     border-radius: 32px;
-  
+  }
+  .submitRoomKey:hover{
+    background-color: #b72a2a;
+    cursor:pointer;
   }
   h1{
     padding: 30px;
@@ -40,19 +43,22 @@
     
   }
   input{
-    height: auto;
-    height: 30px;
+    width: 210px;
+    height: 40px;
     border-radius: 12px;
     padding: 12px;
     border: 0.1rem solid;
+
+    
   }
   .sectionline{
-    padding: 12px 36px;
+    padding: 12px 36px 0px 36px;
     width: 100%;
     height: auto;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    
   }
   .sectionline .line{
     width: 55px;
@@ -71,8 +77,11 @@
   }
 
   .qrimage{
-    height: 200px;
+    height: 170px;
     width: 100%;
+  }
+  .qrimage:hover{
+    cursor: pointer;
   }
   .qrimage img{
     margin: 0 auto;

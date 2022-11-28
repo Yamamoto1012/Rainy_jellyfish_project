@@ -1,12 +1,15 @@
 import React from 'react';              //Reactを読み込んでいる
+import { useLocation } from 'react-router-dom';
+import JoinRoom from './JoinRoom';
 
-const Main = (props) =>{
-    const {data} = props;
+
+const Main = () => {
+    const location = useLocation();
+    const id = Number(location.state)
     return(
         <div>
-            alert({roomId});
+            <h2>{id}</h2>
         </div>
     )
 }
- 
 export default Main;

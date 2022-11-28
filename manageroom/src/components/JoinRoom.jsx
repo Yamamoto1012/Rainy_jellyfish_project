@@ -3,19 +3,21 @@ import "../reset.css"
 import "./css/joinStyle.css"
 import { initializeApp } from "firebase/app";
 import {Link} from "react-router-dom";
-
+import { useNavigate } from 'react-router';
 import qrIcon from '../images/qricon.PNG'
 import {getDatabase ,ref ,set,onValue} from "firebase/database";
 import { useState } from 'react';
 import QrReader from 'react-qr-reader';
-import Main from './Main';
 
 
 
 
 const JoinRoom = () =>{
+  
+  var [roomId,inputroomId] = useState("aho");
 
   const [keySt,inputKey] = useState("");
+  const navigation  = useNavigate();
 
   const upData = () =>{
     const db = getDatabase();
@@ -25,6 +27,7 @@ const JoinRoom = () =>{
       kasu: "kasu"
     });
   }
+
 
   const isExist = () => {
     const db = getDatabase();
@@ -39,7 +42,7 @@ const JoinRoom = () =>{
           alert("miss your key")
         }else{
           //画面遷移
-          window.location.href="/main"
+          navigation("/main",{state:2});
 
         }
       }

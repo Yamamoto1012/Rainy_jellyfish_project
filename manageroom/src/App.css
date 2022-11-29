@@ -1,0 +1,36 @@
+header {
+  padding: 0px 24px;
+  background-color: #fafafa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: auto;
+  /*
+  ↓ 固定にしたい場合は下記を入れる
+      position: sticky;
+      top: 0;
+      left: 0;
+  */
+}
+
+.header-logo {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.header-list {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.header-item{
+  padding: 8px 18px;
+  border-radius: 12px;
+  background-color: #ff8400;
+}
+.header-item a {
+  color: white;
+}

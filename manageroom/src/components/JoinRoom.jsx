@@ -54,7 +54,8 @@ const JoinRoom = () =>{
       <div>
             <div className="card">
                   <div className='content'>
-                  <h1>Check!</h1>
+                  <h1>Check!
+                    Teritory</h1>
                   <input type="name" placeholder="room seacret word.." value={keySt} onChange={(event) => inputKey(event.target.value)}/>
                   
                   <div className='submitRoomKey' onClick={isExist}>混雑状況を確認</div>

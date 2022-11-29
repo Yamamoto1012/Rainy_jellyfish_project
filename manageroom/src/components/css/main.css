@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+
+section{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.box-Item{
+    height: auto;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    text-align: center;
+    margin: 2px;
+    background-color: aquamarine;
+}

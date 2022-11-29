@@ -37,6 +37,7 @@ const analytics = getAnalytics(app);
 function App() {
  
   return (
+    
     <BrowserRouter>
     <div className='App'>
       <header>

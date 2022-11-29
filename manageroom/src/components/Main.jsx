@@ -8,49 +8,54 @@ import "../components/css/main.css"
 //このプログラムは表の画面で、座席の混雑状況を把握できる。
 
 
+
 const Main = () => {
     const location = useLocation();
     const id = Number(location.state)
-    const data = [ 'foo', 'bar', 'baz' ];
-    const SeatBox = () =>{
-        var bol = false;
-        // if(props.isexistData == null){
-            
-        // }else{
-        //     bol = true;
-        // }
-        return(
-          <div className='box-Item'>空</div>
-        )
+    
+    
+    const SeatBox = (props) =>{
+        var seatstatus = props.setseat;
+        if(seatstatus == "true"){
+            return(
+                <div className='box-Item'>空</div>
+              )
+        }else if(seatstatus == "false"){
+            return(
+                <div className='box-Item ful'>満</div>
+            )
+        }else if(seatstatus == "nothing"){
+            return(
+                <div className='box-Item nothing'>あ</div>
+            )
+        }
+        
     }
-    const Renderr= ()=>{
-        return(
-            <div>
-            <SeatBox/>
-            <SeatBox/>
-            <SeatBox/>
-            <SeatBox/>
-            <SeatBox/>
-            <SeatBox/>
-            <SeatBox/>
-            <SeatBox/>
-            <SeatBox/>
-            <SeatBox/>
-            <SeatBox/>
-            <SeatBox/>
-            <SeatBox/>
-            <SeatBox/>
-            <SeatBox/>
-
-
-            </div>
-        )
+    const SeatRendar= ()=>{
+        const number =[]
+        for (let i = 0;i < 100;i++){
+            if(i % 2 == 0){
+                if(i % 4 == 0){
+                    number.push(<SeatBox setseat="false"/>)
+                }else{
+                    number.push(<SeatBox setseat="nothing"/>)
+                }
+            }else{
+                number.push(<SeatBox setseat="true"/>)
+            }
+        }
+        return(number)
     }
     
     return(
         <div>
             <section>
-            <Renderr/>
+            <h2>金沢工業大学自習室の座席状況</h2>
+            <div className='seatrender'>
+                <SeatRendar/>
+            </div>
+            <h2>今日の自習室</h2>
+            <p>今日はいつもと比べて空いてるよ！</p>
             </section>
             
         </div>

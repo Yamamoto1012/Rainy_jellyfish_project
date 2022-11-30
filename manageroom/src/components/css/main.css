@@ -5,12 +5,18 @@ section{
     max-width: 1200px;
     margin: 0 auto;
 }
-h2{
+.title{
     border-bottom: solid 3px black;
-    height: auto;
+    height: 30px;
     margin: 10px;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
 }
+.itemtitle{
+    display: flex;
+}
+
 .box-Item{
     height: auto;
     display: inline-block;
@@ -20,6 +26,7 @@ h2{
     text-align: center;
     margin: 2px;
     background-color: white;
+    cursor: pointer;
 }
 .ful{
     background-color: orange;

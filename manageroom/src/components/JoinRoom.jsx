@@ -24,8 +24,14 @@ const JoinRoom = () =>{
     set(ref(db,"users/"+"aho/"+"tinch"),{
       username: "aho",
       boke: "bokeh",
-      kasu: "kasu"
+      kasu: "kasu",
+      data: "data"
     });
+    for (var i = 0; i < 10; i++){
+      set(ref(db,"users/"+"aho/"+"tinch/data"),{
+        i: "true"
+      })
+    }
   }
 
 

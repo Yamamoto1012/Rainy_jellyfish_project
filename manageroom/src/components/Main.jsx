@@ -3,6 +3,7 @@ import React from 'react';              //Reactを読み込んでいる
 import { useLocation } from 'react-router-dom';
 import JoinRoom from './JoinRoom';
 import "../components/css/main.css"
+import chairIcon from '../images/chair.PNG'
 
 //このプログラムは表の画面で、座席の混雑状況を把握できる。
 
@@ -47,13 +48,22 @@ const Main = () => {
     return(
         <div>
             <section>
-            <h2>金沢工業大学自習室の座席状況</h2>
+            <div className='title'>
+                <h2>金沢工業大学自習室の座席状況</h2>
+                <div className='itemtitle'>
+                    <img src={chairIcon} />
+                    <p>90%</p>
+                </div>
+            </div>
             <div className='seatrender'>
                 <div className='item'>
                     <SeatRendar/>
                 </div>
             </div>
-            <h2>今日の自習室</h2>
+            <div className='title'>
+                <h2>分析</h2>
+
+            </div>
             <p>今日はいつもと比べて空いてるよ！</p>
             </section>
             

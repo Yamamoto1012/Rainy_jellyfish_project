@@ -4,10 +4,7 @@ import { useLocation } from 'react-router-dom';
 import JoinRoom from './JoinRoom';
 import "../components/css/main.css"
 
-
 //このプログラムは表の画面で、座席の混雑状況を把握できる。
-
-
 
 const Main = () => {
     const location = useLocation();
@@ -18,22 +15,22 @@ const Main = () => {
         var seatstatus = props.setseat;
         if(seatstatus == "true"){
             return(
-                <div className='box-Item'>空</div>
+                <div className='box-Item'></div>
               )
         }else if(seatstatus == "false"){
             return(
-                <div className='box-Item ful'>満</div>
+                <div className='box-Item ful'></div>
             )
         }else if(seatstatus == "nothing"){
             return(
-                <div className='box-Item nothing'>あ</div>
+                <div className='box-Item nothing'></div>
             )
         }
         
     }
     const SeatRendar= ()=>{
         const number =[]
-        for (let i = 0;i < 100;i++){
+        for (let i = 0;i < 3000;i++){
             if(i % 2 == 0){
                 if(i % 4 == 0){
                     number.push(<SeatBox setseat="false"/>)
@@ -52,7 +49,9 @@ const Main = () => {
             <section>
             <h2>金沢工業大学自習室の座席状況</h2>
             <div className='seatrender'>
-                <SeatRendar/>
+                <div className='item'>
+                    <SeatRendar/>
+                </div>
             </div>
             <h2>今日の自習室</h2>
             <p>今日はいつもと比べて空いてるよ！</p>

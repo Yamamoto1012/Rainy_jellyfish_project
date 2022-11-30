@@ -31,7 +31,11 @@ h2{
 }
 
 .seatrender{
-    height: 300px;
-    width: 1300px;
     overflow: scroll;
+    overflow-x: scroll;
+}
+
+.item{
+    height: 300px;
+    width: 1200px;
 }

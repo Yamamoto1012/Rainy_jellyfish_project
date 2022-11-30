@@ -1,6 +1,6 @@
 body {
-  background: rgb(197, 30, 147);
-  overflow: hidden;
+  background-color: aqua;
+  overflow-y: hidden;
 }
 
 .formContainer {
@@ -8,9 +8,11 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-items: center; 
+  justify-content: center; 
 }
-
+h1 {
+  text-align: center;
+}
 .formContainer form {
   background-color: white;
   width: 70%;
@@ -18,5 +20,36 @@ body {
   padding: 30px;
   border-radius: 10px;
   border: 1px solid whitesmoke;
+  height:auto;
 }
 
+.uiform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 400px;
+}
+
+.formField {
+  display:flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.submitButton {
+  text-align: center;
+}
+
+.formField input {
+  width: 100%;
+  border: 1px solid grey;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.formField label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}

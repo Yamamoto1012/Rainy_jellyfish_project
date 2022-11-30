@@ -4,11 +4,12 @@ import "../components/css/login.css"
 import Logo from '../images/logo.PNG'
 
 export const Login = () => {
-  return <div classs="formContainer">
-    <form >
-      <h1>ログインフォーム</h1>
-        <hr />
-        <div class="uiForm">
+  return (
+    <div class="formContainer">
+      <form >
+        <h1>ログインフォーム</h1>
+        <hr/>
+        <div className="uiForm">
           <div className="formField">
             <label>ユーザー名</label>
             <input type="text" placeholder="ユーザー名" name="username"/>
@@ -21,11 +22,13 @@ export const Login = () => {
             <label>パスワード</label>
             <input type="text" placeholder="パスワード" name="password"/>
           </div>
-          <button className="submitButton">ログイン</button>
+          <div className="submitButton" >
+            <button>ログイン</button>
+          </div>
         </div>
-    </form>
-
-  </div>
+      </form>
+    </div>
+  );
 }
 
 export default Login;

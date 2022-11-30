@@ -2,29 +2,33 @@ import React from 'react'
 import "../reset.css"
 import "../components/css/login.css"
 import Logo from '../images/logo.PNG'
+
 export const Login = () => {
-    
   return (
-    <div>
-        
-        <div class="login-page">
-            <div class="form">
-                <img src={Logo} />
-                <form class="register-form">
-                <input type="text" placeholder="name"/>
-                <input type="password" placeholder="password"/>
-                <input type="text" placeholder="email address"/>
-                <button>create</button>
-                <p class="message">Already registered? <a href="#">Sign In</a></p>
-                </form>
-                <form class="login-form">
-                <input type="text" placeholder="username"/>
-                <input type="password" placeholder="password"/>
-                <button>login</button>
-                <p class="message">Not registered? <a href="#">Create an account</a></p>
-                </form>
-            </div>
-            </div>
+    <div class="formContainer">
+      <form >
+        <h1>ログインフォーム</h1>
+        <hr/>
+        <div className="uiForm">
+          <div className="formField">
+            <label>ユーザー名</label>
+            <input type="text" placeholder="ユーザー名" name="username"/>
+          </div>
+          <div className="formField">
+            <label>メールアドレス</label>
+            <input type="text" placeholder="メールアドレス" name="mailaddress"/>
+          </div>
+          <div className="formField">
+            <label>パスワード</label>
+            <input type="text" placeholder="パスワード" name="password"/>
+          </div>
+          <div className="submitButton" >
+            <button>ログイン</button>
+          </div>
+        </div>
+      </form>
     </div>
-  )
+  );
 }
+
+export default Login;

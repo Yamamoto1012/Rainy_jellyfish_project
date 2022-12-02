@@ -8,90 +8,83 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 
 export const Login = () => {
-  const initialValues = { username: "", mailaddress: "", password: ""};
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
   const auth = getAuth();
-
-  
-  const handleChange = (e) => {
-    //console.log(e.target.value);
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-    console.log(formValues);
-  };
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    //ログイン情報を送信する
-    //バリデーションチェックをする
-    setFormErrors(validate(formValues));
-  };
-
-  function confilmAccount(value){
-    let emailBool = true;
-    let passwordBool = true;
-
-    if(emailBool && passwordBool){
-      createUserWithEmailAndPassword(auth,formValues.mailaddress,formValues.password).then((userCredential) => {
-        //Sign in
-        const user = userCredential.user;
-        console.log("SEIKO")
-      }).catch((error) =>{
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorMessage)
-      });
-    }
-  }
-
-  const validate = (values) => {
-    const errors = {};
-    
-    if (!values.username) {
-      errors.username = "ユーザー名を入力してください";
-      console.log(errors);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const auth = getAuth();
+    if(email.length != 0 && password.length != 0){
+      if(password.length > 6){
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+          console.log(user)
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorMessage)
+        });
+      }else{
+        alert("enable password is from 5 words.")
+        
+      }
+      
     }else{
-    }
-    if (!values.mailaddress) {
-      errors.username = "メールアドレスを入力してください";
-      console.log(errors);
-    }
-    if (!values.password) {
-      errors.username = "パスワードを入力してください";
-      console.log(errors);
-    } else if (values.password.length < 4) {
-      errors.password = "4文字以上15文字以下のパスワードを入力してください";
-      console.log(errors);
-    } else if (values.password.length > 15 ) {
-      errors.password = "4文字以上15文字以下のパスワードを入力してください";
-      console.log(errors);
-    }
+      if (email.length == 0) {
+        alert("Please insert mailaddress to form")
+      }
+      if (password.length == 0) {
+        alert("Please insert password to form")
 
-   
+      }
+    }
+    
+  };
+  const handleChangeEmail = (event) => {
+    setEmail(event.currentTarget.value);
+  };
+  const handleChangePassword = (event) => {
+    setPassword(event.currentTarget.value);
   };
   
+  
+  function FromScreen(props){
+    return(
+      <div>
+        {/* <form onSubmit={(e) => handleSubmit(e)}> */}
+        <form>
+          <h1>Hi there!</h1>
+          <hr/>
+          <div className="uiForm">
+            <div className="formField">
+              <label>MailAddress</label>
+              <input type="text" placeholder="valid email address" name="email" onChange={(e) => handleChangeEmail(e)}/>
+            </div>
+            <div className="formField">
+              <label>Password</label>
+              <input type="text" placeholder="password" name="password" onChange={(e) => handleChangePassword(e)}/>
+            </div>
+            <div className="submitButton"  >
+              <button onClick={handleSubmit}>Login</button>
+            </div>
+            <div className="border" />
+            <div className='login'>
+              <p>Don't you have account? Create here!</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    )
+  }
 
 
   return (
     <div className="formContainer">
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <h1>ログインフォーム</h1>
-        <hr/>
-        <div className="uiForm">
-          <div className="formField">
-            <label>メールアドレス</label>
-            <input type="text" placeholder="メールアドレス" name="mailaddress" onChange={(e) => handleChange(e)}/>
-          </div>
-          <div className="formField">
-            <label>パスワード</label>
-            <input type="text" placeholder="パスワード" name="password" onChange={(e) => handleChange(e)}/>
-          </div>
-          <div className="submitButton"  >
-            <button onClick={confilmAccount(formValues)}>ログイン</button>
-          </div>
-        </div>
-      </form>
+      <FromScreen/>
     </div>
   );
 }

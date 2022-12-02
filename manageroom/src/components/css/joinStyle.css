@@ -1,10 +1,10 @@
 
- .card{
-  box-shadow: 0px 5px 100px 27px #12b5a2;
-border-radius: 44px;
- }
+
+.card {
+  padding-top: 40px;
+}
   .content{
-    position: absolute;
+    
     text-align: center;
     top: 0;
     bottom:0;

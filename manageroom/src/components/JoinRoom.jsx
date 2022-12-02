@@ -21,23 +21,29 @@ const JoinRoom = () =>{
 
   const upData = () =>{
     const db = getDatabase();
-    set(ref(db,"users/"+"aho/"+"tinch"),{
-      username: "aho",
-      boke: "bokeh",
-      kasu: "kasu",
+    set(ref(db,"users/"+"taku/"+"roomId"),{
+      roomkey:"hogehoge",
+      roomname: "金沢工業大学テスト",
+      seat: "bokeh",
       data: "data"
     });
-    for (var i = 0; i < 10; i++){
-      set(ref(db,"users/"+"aho/"+"tinch/data"),{
-        i: "true"
-      })
-    }
+    set(ref(db,"users/"+"taku/"+"roomId/timestamp"),{
+      20221208:"09001201"
+    });
+    set(ref(db,"users/"+"taku/"+"roomId/currentTime"),{
+      20221208:"0900"
+    });
+    // for (var i = 0; i < 10; i++){
+    //   set(ref(db,"users/"+"aho/"+"tinch/data"),{
+    //     i: "true"
+    //   })
+    // }
   }
 
 
   const isExist = () => {
     const db = getDatabase();
-    const getvalue = ref(db,"users/aho/boke");
+    const getvalue = ref(db,"users/"+"taku/"+"roomId/roomkey");
     onValue(getvalue,(snapshot) =>{
       const data = snapshot.val()
       

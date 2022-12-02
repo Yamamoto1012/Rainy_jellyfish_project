@@ -9,8 +9,8 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export const Login = () => {
   const auth = getAuth();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
   const handleSubmit = (event) => {
     event.preventDefault();
     const auth = getAuth();
@@ -45,24 +45,24 @@ export const Login = () => {
     
   };
   const handleChangeEmail = (event) => {
+    console.log(event.currentTarget.value)
     setEmail(event.currentTarget.value);
   };
   const handleChangePassword = (event) => {
     setPassword(event.currentTarget.value);
   };
   
-  
-  function FromScreen(props){
-    return(
-      <div>
-        {/* <form onSubmit={(e) => handleSubmit(e)}> */}
-        <form>
+
+
+  return (
+    <div className="formContainer">
+       <form>
           <h1>Hi there!</h1>
           <hr/>
           <div className="uiForm">
             <div className="formField">
               <label>MailAddress</label>
-              <input type="text" placeholder="valid email address" name="email" onChange={(e) => handleChangeEmail(e)}/>
+              <input type="text" placeholder="valid email address" name="mailaddress" onChange={(e) => handleChangeEmail(e)}/>
             </div>
             <div className="formField">
               <label>Password</label>
@@ -77,14 +77,6 @@ export const Login = () => {
             </div>
           </div>
         </form>
-      </div>
-    )
-  }
-
-
-  return (
-    <div className="formContainer">
-      <FromScreen/>
     </div>
   );
 }

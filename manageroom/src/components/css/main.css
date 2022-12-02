@@ -2,7 +2,7 @@
 
 
 section{
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
 }
 .title{
@@ -40,9 +40,10 @@ section{
 .seatrender{
     overflow: scroll;
     overflow-x: scroll;
+    
 }
 
 .item{
     height: 300px;
-    width: 1200px;
+    width: 1600px;
 }

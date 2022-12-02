@@ -53,3 +53,21 @@ h1 {
   font-weight: 600;
   margin-bottom: 3px;
 }
+
+.submitButton button{
+  background-color: rgb(132, 132, 243);
+  width: 100%;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 30px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background-color: rgb(36, 36, 199);
+}
+

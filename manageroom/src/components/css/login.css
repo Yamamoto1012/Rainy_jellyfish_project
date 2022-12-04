@@ -12,7 +12,7 @@ h1 {
 }
 .formContainer form {
   background-color: white;
-  max-width: 450px;
+width: 350px;
   padding: 30px;
   border-radius: 10px;
   border: 1px solid whitesmoke;
@@ -67,6 +67,12 @@ h1 {
   font-size: 15px;
   cursor: pointer;
   transition: all 0.2s;
+}
+.submitButton .loginButton{
+  background-color: rgb(255, 98, 41);
+}
+.login{
+  text-align: center;
 }
 
 button:hover {

@@ -9,6 +9,8 @@ import HomeScreen from "./components/Home"
 import MainScreen from "./components/Main"
 import JoinRoom from './components/JoinRoom';
 import { Login } from "./components/Login";
+import Register from "./components/Register";
+import MyPage from "./components/MyPage";
 
 
 // Import the functions you need from the SDKs you need
@@ -41,10 +43,11 @@ function App() {
     <BrowserRouter>
     <div className='App'>
       <header>
-      <h1 class="header-logo">CheckTeritory</h1>
+      
+        <a href="/"><h1 class="header-logo">CheckTeritory</h1></a>
         <nav class="header-nav">
             <ul class="header-list">
-                <li class="header-item"><a href="/login">ログイン</a></li>
+                <li class="header-item"><a href="auth/register">ログイン</a></li>
             </ul>
         </nav>
       </header>
@@ -62,7 +65,9 @@ function App() {
         <Route path='/main' element={<MainScreen/>}/>
           {/* /mainのアドレスが入力されたらMainScreen（Main.jsx)に移動する */}
         {/* <Route path='/join' element={<HomeScreen/>}/> */}
-        <Route path="/login" element={<Login />}/>
+        <Route path="auth/login" element={<Login />}/>
+        <Route path="auth/register" element={<Register/>}/>
+        <Route path="auth/mypage" element={<MyPage/>} />
       </Routes>
     </div>
     </BrowserRouter>

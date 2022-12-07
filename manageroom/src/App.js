@@ -11,6 +11,7 @@ import JoinRoom from './components/JoinRoom';
 import { Login } from "./components/Login";
 import Register from "./components/Register";
 import MyPage from "./components/MyPage";
+import CreateRoom from "./components/CreateRoom";
 
 
 // Import the functions you need from the SDKs you need
@@ -68,6 +69,7 @@ function App() {
         <Route path="auth/login" element={<Login />}/>
         <Route path="auth/register" element={<Register/>}/>
         <Route path="auth/mypage" element={<MyPage/>} />
+        <Route path="/create" element={<CreateRoom/>}/>
       </Routes>
     </div>
     </BrowserRouter>

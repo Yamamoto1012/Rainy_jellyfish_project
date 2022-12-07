@@ -3,7 +3,8 @@ import "./reset.css"
 import "./App.css"
 
 
-import { BrowserRouter, Link,  Route,Routes } from "react-router-dom";
+import { BrowserRouter, Link,  Route,Routes,useHistory,Redirect} from "react-router-dom";
+import { AuthProvider, useAuthContext } from "./context/AuthContext";
 
 import HomeScreen from "./components/Home"
 import MainScreen from "./components/Main"
@@ -39,19 +40,39 @@ const analytics = getAnalytics(app);
 // プログラムの一番上、ヘッダー部分だけを実装するプログラム
 function App() {
  
+
+  let user = false;
+  const Loginbutton = () =>{
+    if(!user){
+      return(
+        <li class="header-item"><a href="auth/register">ログイン</a></li>
+
+      )
+    }else{
+      return(
+        <li class="header-item"><a href="auth/register">{user.email}</a></li>
+
+      )
+
+    }
+  }
+  
   return (
     
     <BrowserRouter>
     <div className='App'>
+      
       <header>
       
-        <a href="/"><h1 class="header-logo">CheckTeritory</h1></a>
-        <nav class="header-nav">
-            <ul class="header-list">
-                <li class="header-item"><a href="auth/register">ログイン</a></li>
-            </ul>
-        </nav>
-      </header>
+      <a href="/"><h1 class="header-logo">CheckTeritory</h1></a>
+      <nav class="header-nav">
+          <ul class="header-list">
+            <AuthProvider><Loginbutton/></AuthProvider>
+          </ul>
+      </nav>
+    </header>
+      
+      
 
 
 
@@ -69,7 +90,7 @@ function App() {
         <Route path="auth/login" element={<Login />}/>
         <Route path="auth/register" element={<Register/>}/>
         <Route path="auth/mypage" element={<MyPage/>} />
-        <Route path="/create" element={<CreateRoom/>}/>
+        <Route path="/create" element={<AuthProvider><CreateRoom/></AuthProvider>}/>
       </Routes>
     </div>
     </BrowserRouter>

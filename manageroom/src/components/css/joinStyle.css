@@ -1,14 +1,10 @@
-*{
-    margin: 0;
-    padding: 0;
-    height: 96%;
-  }
-  .card{
-    position: relative;
-  
-  }
+
+
+.card {
+  padding-top: 40px;
+}
   .content{
-    position: absolute;
+    
     text-align: center;
     top: 0;
     bottom:0;
@@ -40,7 +36,6 @@
   }
   a{
     text-decoration: none;
-    
   }
   input{
     width: 210px;
@@ -48,8 +43,6 @@
     border-radius: 12px;
     padding: 12px;
     border: 0.1rem solid;
-
-    
   }
   .sectionline{
     padding: 12px 36px 0px 36px;
@@ -86,5 +79,6 @@
   .qrimage img{
     margin: 0 auto;
     padding: 25px;
+    height: 170px;
   }
   

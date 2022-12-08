@@ -3,11 +3,16 @@ import "./reset.css"
 import "./App.css"
 
 
-import { BrowserRouter, Link,  Route,Routes } from "react-router-dom";
+import { BrowserRouter, Link,  Route,Routes,useHistory,Redirect} from "react-router-dom";
+import { AuthProvider, useAuthContext } from "./context/AuthContext";
 
 import HomeScreen from "./components/Home"
 import MainScreen from "./components/Main"
 import JoinRoom from './components/JoinRoom';
+import { Login } from "./components/Login";
+import Register from "./components/Register";
+import MyPage from "./components/MyPage";
+import CreateRoom from "./components/CreateRoom";
 
 
 // Import the functions you need from the SDKs you need
@@ -27,9 +32,6 @@ const firebaseConfig = {
   appId: "1:289858188296:web:08e08c2a99808cdc5a4dbd",
   measurementId: "G-09YV1Z8X0X"
 };
-
-
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
@@ -37,25 +39,45 @@ const analytics = getAnalytics(app);
 
 // プログラムの一番上、ヘッダー部分だけを実装するプログラム
 function App() {
+ 
+
+  let user = false;
+  const Loginbutton = () =>{
+    if(!user){
+      return(
+        <li class="header-item"><a href="auth/register">ログイン</a></li>
+
+      )
+    }else{
+      return(
+        <li class="header-item"><a href="auth/register">{user.email}</a></li>
+
+      )
+
+    }
+  }
+  
   return (
+    
     <BrowserRouter>
     <div className='App'>
+      
       <header>
-      <h1 class="header-logo">CheckTeritory</h1>
-        <nav class="header-nav">
-            <ul class="header-list">
-                <li class="header-item"><a href="">ログイン</a></li>
-            </ul>
-        </nav>
-      </header>
+      
+      <a href="/"><h1 class="header-logo">CheckTeritory</h1></a>
+      <nav class="header-nav">
+          <ul class="header-list">
+            <AuthProvider><Loginbutton/></AuthProvider>
+          </ul>
+      </nav>
+    </header>
+      
+      
 
 
 
 
-      {/* ここから下　画面が変わる時にどこに飛ぶのかを教えてあげるプログラム */}
-      <Link to="/">Home</Link>
-      <Link to="/main">Main</Link>
-      <Link to="/join">Join</Link>
+
 
       
       <Routes>
@@ -65,6 +87,10 @@ function App() {
         <Route path='/main' element={<MainScreen/>}/>
           {/* /mainのアドレスが入力されたらMainScreen（Main.jsx)に移動する */}
         {/* <Route path='/join' element={<HomeScreen/>}/> */}
+        <Route path="auth/login" element={<Login />}/>
+        <Route path="auth/register" element={<Register/>}/>
+        <Route path="auth/mypage" element={<MyPage/>} />
+        <Route path="/create" element={<AuthProvider><CreateRoom/></AuthProvider>}/>
       </Routes>
     </div>
     </BrowserRouter>

@@ -1,0 +1,47 @@
+@charset "utf-8";
+
+
+section{
+    max-width: 1500px;
+    margin: 0 auto;
+}
+.title{
+    border-bottom: solid 3px black;
+    height: 30px;
+    margin: 10px;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+}
+.itemtitle{
+    display: flex;
+}
+
+.box-Item{
+    height: auto;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    text-align: center;
+    margin: 2px;
+    background-color: white;
+    cursor: pointer;
+}
+.ful{
+    background-color: orange;
+}
+.nothing{
+    background-color: whitesmoke;
+}
+
+.seatrender{
+    overflow: scroll;
+    overflow-x: scroll;
+    
+}
+
+.item{
+    height: 75vh;
+    width: 1600px;
+}

@@ -1,0 +1,92 @@
+
+.formContainer {
+  height:90vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  
+}
+h1 {
+  text-align: center;
+}
+.formContainer form {
+  background-color: white;
+width: 350px;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid whitesmoke;
+  height:auto;
+  box-shadow:
+  0 1.9px 2.5px rgba(0, 0, 0, 0.057),
+  0 5px 6.1px rgba(0, 0, 0, 0.076),
+  0 10.1px 11.4px rgba(0, 0, 0, 0.086),
+  0 19.2px 19.8px rgba(0, 0, 0, 0.092),
+  0 38.4px 34.8px rgba(0, 0, 0, 0.1),
+  0 101px 74px rgba(0, 0, 0, 0.13);
+}
+
+.uiform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 400px;
+}
+
+.formField {
+  display:flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.submitButton {
+  text-align: center;
+}
+
+.formField input {
+  width: 100%;
+  border: 1px solid grey;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.formField label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+.submitButton button{
+  background-color: rgb(132, 132, 243);
+  width: 100%;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 30px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.submitButton .loginButton{
+  background-color: rgb(255, 98, 41);
+}
+.login{
+  text-align: center;
+}
+
+button:hover {
+  background-color: rgb(36, 36, 199);
+}
+.border{
+  height: 1px;
+  width: auto;
+  background-color: black;
+  margin: 32px 36px;
+}
+
+.login p{
+  color: blue;
+  cursor: pointer;
+}
+

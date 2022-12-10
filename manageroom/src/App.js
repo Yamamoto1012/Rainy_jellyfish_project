@@ -79,7 +79,7 @@ function App() {
       
       <header>
       
-      <a href="/"><h1 class="header-logo">CheckTeritory</h1></a>
+      <a href="/"><h1 class="header-logo">StudyBuddy</h1></a>
       <nav class="header-nav">
           <ul class="header-list">
             <Loginbutton/>

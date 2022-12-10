@@ -8,35 +8,45 @@ const CreateRoom = () =>{
     const [loginbool,setLoginBool] = useState("false");
     let a = "false";
 
+    
+    function sayhello(id){
+        console.log({id});
+    }
     const SeatBox = (props) =>{
         var seatstatus = props.setseat;
+        var onClick = props.onclick;
+        var id = props.id;
         if(seatstatus == "true"){
             return(
-                <div className='box-Item'></div>
+                <button className='box-Item'></button>
               )
         }else if(seatstatus == "false"){
             return(
-                <div className='box-Item ful'></div>
+                
+                <button className='box-Item ful' onClick={() => sayhello(id)}></button>
             )
         }else if(seatstatus == "nothing"){
             return(
-                <div className='box-Item nothing'></div>
+                <button className='box-Item nothing' onClick={() => sayhello(id)}></button>
             )
         }
         
     }
+    
     const SeatRendar= ()=>{
         const number =[]
         for (let i = 0;i < 3000;i++){
-            if(i % 2 == 0){
-                if(i % 4 == 0){
-                    number.push(<SeatBox setseat="false"/>)
-                }else{
-                    number.push(<SeatBox setseat="nothing"/>)
-                }
-            }else{
-                number.push(<SeatBox setseat="true"/>)
-            }
+            console.log("ここだよ")
+            number.push(<SeatBox setseat="false" id={i}/>)
+            // if(i % 2 == 0){
+            //     if(i % 4 == 0){
+            //         number.push(<SeatBox setseat="false"/>)
+            //     }else{
+            //         number.push(<SeatBox setseat="nothing"/>)
+            //     }
+            // }else{
+            //     number.push(<SeatBox setseat="true"/>)
+            // }
         }
         return(number)
     }

@@ -1,14 +1,12 @@
 import React from 'react'
 import "../reset.css"
 import "./css/joinStyle.css"
-import { initializeApp } from "firebase/app";
-import {Link} from "react-router-dom";
 import { useNavigate } from 'react-router';
 import qrIcon from '../images/qricon.PNG'
 import {getDatabase ,ref ,set,onValue} from "firebase/database";
 import { useState } from 'react';
 import QrReader from 'react-qr-reader';
-
+import LOGO from '../images/logo.PNG'
 
 
 
@@ -66,8 +64,7 @@ const JoinRoom = () =>{
       <div>
             <div className="card">
                   <div className='content'>
-                  <h1>Check!
-                    Teritory</h1>
+                  <img src={LOGO} />
                   <input type="name" placeholder="room seacret word.." value={keySt} onChange={(event) => inputKey(event.target.value)}/>
                   
                   <div className='submitRoomKey' onClick={isExist}>混雑状況を確認</div>

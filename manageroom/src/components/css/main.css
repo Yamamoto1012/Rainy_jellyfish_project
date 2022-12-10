@@ -34,6 +34,10 @@ section{
 .nothing{
     background-color: whitesmoke;
 }
+.selectseat{
+
+    background-color: #483d8b;
+}
 
 .seatrender{
     overflow: scroll;

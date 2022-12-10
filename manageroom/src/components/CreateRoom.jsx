@@ -3,42 +3,59 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState } from 'react';
 import { useAuthContext } from '../context/AuthContext';
 
+
 const CreateRoom = () =>{
     const {user} = useAuthContext();
-    const [loginbool,setLoginBool] = useState("false");
-    let a = "false";
+    let returnvalue = {
 
+    };
+    const [updateReturnValue,setUpdateReturnValue] = useState({})
+
+    // const [retValue,setretValue] = setseat
+    function sayhello(id){
+        if(returnvalue[id]["judge"] == "nothing"){
+            returnvalue[id]["component"] = (<SeatBox setseat="true"/>);
+            returnvalue[id]["judge"] = "true";
+        }else{
+            returnvalue[id]["component"] = (<SeatBox setseat="nothing"/>);
+            returnvalue[id]["judge"] = "nothing";
+        }
+
+    }
     const SeatBox = (props) =>{
         var seatstatus = props.setseat;
+        var id = props.id;
         if(seatstatus == "true"){
             return(
-                <div className='box-Item'></div>
+                <button className='box-Item'></button>
               )
         }else if(seatstatus == "false"){
             return(
-                <div className='box-Item ful'></div>
+                
+                <button className='box-Item ful' onClick={() => sayhello(id)}></button>
             )
         }else if(seatstatus == "nothing"){
             return(
-                <div className='box-Item nothing'></div>
+                <button className='box-Item nothing' onClick={() => sayhello(id)}></button>
             )
         }
         
     }
+    
     const SeatRendar= ()=>{
-        const number =[]
-        for (let i = 0;i < 3000;i++){
-            if(i % 2 == 0){
-                if(i % 4 == 0){
-                    number.push(<SeatBox setseat="false"/>)
-                }else{
-                    number.push(<SeatBox setseat="nothing"/>)
-                }
-            }else{
-                number.push(<SeatBox setseat="true"/>)
+
+        const seat_maximum_value = 3000;
+        for (let i = 0;i < seat_maximum_value;i++){
+            if(updateReturnValue[i] === undefined){
+                returnvalue[i] = {component: (<SeatBox setseat="nothing" id={i}/>),judge:"nothing"};
             }
         }
-        return(number)
+        
+        const retunRender = []
+        for (let i = 0; i < seat_maximum_value;i++){
+            retunRender.push(returnvalue[i]["component"])
+        }
+        return(retunRender);
     }
     const JudgeDisplay = ()=>{
         if(user){

@@ -1,81 +1,78 @@
 import React from 'react';              //Reactを読み込んでいる
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useState } from 'react';
+import { useState ,useEffect,useRef} from 'react';
 import { useAuthContext } from '../context/AuthContext';
 
 
 const CreateRoom = () =>{
     const {user} = useAuthContext();
-    let returnvalue = {
+    let todos = []
+    let seatStatus = useRef()
+    const [count,setCount] = useState(0);
 
-    };
-    const [updateReturnValue,setUpdateReturnValue] = useState({})
-
-    // const [retValue,setretValue] = setseat
-    function sayhello(id){
-        if(returnvalue[id]["judge"] == "nothing"){
-            returnvalue[id]["component"] = (<SeatBox setseat="true"/>);
-            returnvalue[id]["judge"] = "true";
+   
+    function changeStatus(props){
+        if(seatStatus[props] === undefined){
+            //もし押したボタンのIDに値が入っていなかったら
+            seatStatus[props] = true;
         }else{
-            returnvalue[id]["component"] = (<SeatBox setseat="nothing"/>);
-            returnvalue[id]["judge"] = "nothing";
-        }
-
-    }
-    const SeatBox = (props) =>{
-        var seatstatus = props.setseat;
-        var id = props.id;
-        if(seatstatus == "true"){
-            return(
-                <button className='box-Item'></button>
-              )
-        }else if(seatstatus == "false"){
-            return(
-                
-                <button className='box-Item ful' onClick={() => sayhello(id)}></button>
-            )
-        }else if(seatstatus == "nothing"){
-            return(
-                <button className='box-Item nothing' onClick={() => sayhello(id)}></button>
-            )
-        }
-        
-    }
-    
-    const SeatRendar= ()=>{
-
-        const seat_maximum_value = 3000;
-        for (let i = 0;i < seat_maximum_value;i++){
-            if(updateReturnValue[i] === undefined){
-                returnvalue[i] = {component: (<SeatBox setseat="nothing" id={i}/>),judge:"nothing"};
+            //もし押したボタンIDに値が入っていたら
+            if(seatStatus[props]){
+                //押したボタンがTRUEだったら
+                seatStatus[props] = false;
+                // console.log("truemy false");
+            }else{
+                seatStatus[props] = true;
+                // console.log("truemy hera");
             }
         }
         
-        const retunRender = []
-        for (let i = 0; i < seat_maximum_value;i++){
-            retunRender.push(returnvalue[i]["component"])
+        console.log(seatStatus);
+        setCount((prevCount) => prevCount + 1)
+        
+    }
+    const SeatItem = (props) =>{
+        const getstatus = props.setstatus;
+        const getId = props.id;
+        if(seatStatus[getId] == true){
+            console.log(getId +"ここはTrue");
+            return(
+                <div>
+                    <button className='box-Item ful' onClick={() => changeStatus(getId)}>{getId}</button>
+                </div>
+            )
+        }else{
+            return(
+                <div>
+                    <button className='box-Item' onClick={() => changeStatus(getId)}>{getId}</button>
+                </div>
+            )
         }
-        return(retunRender);
+        
+    }
+    const ClickSeatBox = () =>{
+        // const [todosState,setTodosState] = useState([]);
+        for(let i = 0;i < 20;i++){
+            todos[i] = (<SeatItem id={i}/>)
+        }
+        return(todos)
     }
     const JudgeDisplay = ()=>{
         if(user){
             return(
                 <>
-                <h2>What is RoomName?</h2>
+                <h2>自習室名</h2>
                 <input type="text"></input>
-                <h2>What is ownerName?</h2>
-                <input type="text"></input>
-                <h2>What is ownerName?</h2>
+                <h2>管理者名</h2>
                 <input type="text"></input>
                 <section>
                     <div className='title'>
-                        <h2>zaseki settei</h2>
-
+                        <h2>座席設定</h2>
                     </div>
-                    <p>色が塗られている範囲を自動検出して部屋のサイズを決定します。max横*縦(30*100)</p>
                     <div className='seatrender'>
                         <div className='item'>
-                            <SeatRendar/>
+                            {/*ここにBoxItemが入る */}
+                            <ClickSeatBox/>
                         </div>
                     </div>
                 </section>
@@ -93,8 +90,6 @@ const CreateRoom = () =>{
     
     return(
         <div>
-            <h1>Hello!</h1>
-            {/* <button onClick={logout}>roguaut</button> */}
             <JudgeDisplay/>
         </div>
     )

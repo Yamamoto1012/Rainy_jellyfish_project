@@ -43,7 +43,6 @@ function App() {
   onAuthStateChanged(getAuth(), (user) => {
     if (user) {
       setFirebaseCurrentAuth(user.displayName);
-      console.log(user)
       // ...
     } else {
       // User is signed out

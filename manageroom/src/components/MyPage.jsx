@@ -61,6 +61,7 @@ export const MyPage = () => {
         // An error happened.
       });
     }
+
     const TextButton = styled(Button)`
       text-transform: none;
     `;
@@ -76,7 +77,6 @@ export const MyPage = () => {
   return (
       <div>   
         <Box>
-          <Navbar/>
           <Stack direction="row" spacing={2} justifyContent="space-between">
             <Sidebar/>
             <Feed/>
@@ -85,11 +85,9 @@ export const MyPage = () => {
         </Box>  
         <h1>Hi,{displayName}!</h1>
         <input type="text" placeholder="username" name="password" ref={inputUserNameRef}/> 
-        <Button variant="outlined"><button onClick={SaveProfile}>setusername</button></Button>
-        <h2>作成した座席表一覧</h2> 
+        <button onClick={SaveProfile}>setusername</button>
         <h2>アカウント処理</h2>
         <button onClick={SignOut}>SignOut</button>
-        
     </div>
   )
 }

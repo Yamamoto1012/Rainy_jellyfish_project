@@ -37,22 +37,22 @@ const CreateRoom = () =>{
         if(seatStatus[getId] == true){
             console.log(getId +"ここはTrue");
             return(
-                <div>
-                    <button className='box-Item ful' onClick={() => changeStatus(getId)}>{getId}</button>
-                </div>
+      
+                    <button className='box-Item ful' onClick={() => changeStatus(getId)}></button>
+             
             )
         }else{
             return(
-                <div>
-                    <button className='box-Item' onClick={() => changeStatus(getId)}>{getId}</button>
-                </div>
+               
+                    <button className='box-Item' onClick={() => changeStatus(getId)}></button>
+                
             )
         }
         
     }
     const ClickSeatBox = () =>{
         // const [todosState,setTodosState] = useState([]);
-        for(let i = 0;i < 20;i++){
+        for(let i = 0;i < 3000;i++){
             todos[i] = (<SeatItem id={i}/>)
         }
         return(todos)
@@ -61,13 +61,9 @@ const CreateRoom = () =>{
         if(user){
             return(
                 <>
-                <h2>自習室名</h2>
-                <input type="text"></input>
-                <h2>管理者名</h2>
-                <input type="text"></input>
                 <section>
-                    <div className='title'>
-                        <h2>座席設定</h2>
+               <div className='title'>
+                        <h2>座席設定 「最大 横30×縦100」</h2>
                     </div>
                     <div className='seatrender'>
                         <div className='item'>
@@ -75,8 +71,19 @@ const CreateRoom = () =>{
                             <ClickSeatBox/>
                         </div>
                     </div>
+                    
+                   
+                <h2>自習室名</h2>
+                <input type="text"></input>
+                <h2>管理者名</h2>
+                <input type="text"></input>
+                <div className='paddingBig'>
+                    <div className='createbutton radius'>座席作成</div>
+                </div>
+                
+                    
                 </section>
-                <button>zaseki settei</button>
+                
                 </>
             )
         }else{

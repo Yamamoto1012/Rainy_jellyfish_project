@@ -9,11 +9,18 @@ const CreateRoom = () =>{
     let returnvalue = {
 
     };
+    const [updateReturnValue,setUpdateReturnValue] = useState({})
+
+    // const [retValue,setretValue] = setseat
     function sayhello(id){
-        console.log(returnvalue[id])
-        if(returnvalue[id] == (<SeatBox setseat="nothing"/>)){
-            console.log("なし")
+        if(returnvalue[id]["judge"] == "nothing"){
+            returnvalue[id]["component"] = (<SeatBox setseat="true"/>);
+            returnvalue[id]["judge"] = "true";
+        }else{
+            returnvalue[id]["component"] = (<SeatBox setseat="nothing"/>);
+            returnvalue[id]["judge"] = "nothing";
         }
+
     }
     const SeatBox = (props) =>{
         var seatstatus = props.setseat;
@@ -36,15 +43,19 @@ const CreateRoom = () =>{
     }
     
     const SeatRendar= ()=>{
-        for (let i = 0;i < 3000;i++){
-            if(returnvalue[i] === undefined){
-                returnvalue[i] = {component: (<SeatBox setseat="false" id={i}/>)};
+
+        const seat_maximum_value = 3000;
+        for (let i = 0;i < seat_maximum_value;i++){
+            if(updateReturnValue[i] === undefined){
+                returnvalue[i] = {component: (<SeatBox setseat="nothing" id={i}/>),judge:"nothing"};
             }
-            // console.log(returnvalue)
         }
         
-        
-        return(returnvalue[1]["component"]);
+        const retunRender = []
+        for (let i = 0; i < seat_maximum_value;i++){
+            retunRender.push(returnvalue[i]["component"])
+        }
+        return(retunRender);
     }
     const JudgeDisplay = ()=>{
         if(user){

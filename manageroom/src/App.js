@@ -20,6 +20,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth ,onAuthStateChanged} from "firebase/auth";
 import { useState } from "react";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -106,6 +107,7 @@ function App() {
         <Route path="auth/register" element={<Register/>}/>
         <Route path="auth/mypage" element={<MyPage/>} />
         <Route path="/create" element={<AuthProvider><CreateRoom/></AuthProvider>}/>
+        <Route path="/profile"></Route>
       </Routes>
     </div>
     </BrowserRouter>

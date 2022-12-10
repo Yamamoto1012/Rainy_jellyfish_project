@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
-import { getAuth, onAuthStateChanged ,updateProfile} from "firebase/auth";
+import { getAuth, onAuthStateChanged ,updateProfile,signOut} from "firebase/auth";
 import { useRef } from 'react';
-import Alert from './Alert';
+
 
 export const MyPage = () => {
     const auth = getAuth();
@@ -10,6 +10,8 @@ export const MyPage = () => {
     const [displayName,setDisplayName] = useState();
     const [displayNamelocal,setDisplayNameLocal] = useState();
     let isChangedProfilebool = false;
+
+    //FirbaseAuthの情報を取得
     onAuthStateChanged(auth, (user) => {
       if (user) {
 
@@ -42,11 +44,23 @@ export const MyPage = () => {
           });
             
     }
+    const SignOut = () =>{
+      const auth = getAuth();
+      signOut(auth).then(() => {
+        // Sign-out successful.
+        window.location.replace('../#');
+      }).catch((error) => {
+        // An error happened.
+      });
+    }
   return (
     <div>
         <h1>Hi,{displayName}!</h1>
-        <input type="text" placeholder="username" name="password" ref={inputUserNameRef}/>  
+        <input type="text" placeholder="username" name="password" ref={inputUserNameRef}/> 
         <button onClick={SaveProfile}>setusername</button>
+        <h2>作成した座席表一覧</h2> 
+        <h2>アカウント処理</h2>
+        <button onClick={SignOut}>SignOut</button>
     </div>
   )
 }

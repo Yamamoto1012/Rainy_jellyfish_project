@@ -18,6 +18,8 @@ import CreateRoom from "./components/CreateRoom";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getAuth ,onAuthStateChanged} from "firebase/auth";
+import { useState } from "react";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -37,24 +39,37 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
 
+
 // プログラムの一番上、ヘッダー部分だけを実装するプログラム
 function App() {
+  const [firebaseCurrentAuth,setFirebaseCurrentAuth] = useState("ログイン");
+
+  onAuthStateChanged(getAuth(), (user) => {
+    if (user) {
+      setFirebaseCurrentAuth(user.displayName);
+      console.log(user)
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
  
 
-  let user = false;
+  const user = false;
   const Loginbutton = () =>{
-    if(!user){
+ 
+    if(firebaseCurrentAuth=="ログイン"){
       return(
-        <li class="header-item"><a href="auth/register">ログイン</a></li>
-
+        <li class="header-item"><a href="auth/register">{firebaseCurrentAuth}</a></li>
       )
     }else{
       return(
-        <li class="header-item"><a href="auth/register">{user.email}</a></li>
-
+        <li class="header-item"><a href="auth/mypage">{firebaseCurrentAuth}</a></li>
       )
-
     }
+      
+    
   }
   
   return (
@@ -67,7 +82,7 @@ function App() {
       <a href="/"><h1 class="header-logo">CheckTeritory</h1></a>
       <nav class="header-nav">
           <ul class="header-list">
-            <AuthProvider><Loginbutton/></AuthProvider>
+            <Loginbutton/>
           </ul>
       </nav>
     </header>

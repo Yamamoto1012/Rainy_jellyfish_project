@@ -39,6 +39,7 @@ const JoinRoom = () =>{
   }
 
 
+
   const isExist = () => {
     const db = getDatabase();
     const getvalue = ref(db,"users/"+"taku/"+"roomId/roomkey");
@@ -77,7 +78,7 @@ const JoinRoom = () =>{
                       <div className='line'></div>
                   </div>
                   <div className='qrimage'>
-                    <img src={qrIcon} onClick={upData}></img>
+                    <a href='loadqr'><img src={qrIcon} onClick={upData}></img></a>
                   </div>
                   </div>
               </div>

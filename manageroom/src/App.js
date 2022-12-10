@@ -13,18 +13,14 @@ import { Login } from "./components/Login";
 import Register from "./components/Register";
 import MyPage from "./components/MyPage";
 import CreateRoom from "./components/CreateRoom";
-
+import LoadQR from "./components/LoadQR";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth ,onAuthStateChanged} from "firebase/auth";
 import { useState } from "react";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDsOwSbKGcevWf_NpnX3-nzWJc7ThcBBH4",
   authDomain: "kurageproject-apphack.firebaseapp.com",
@@ -61,11 +57,11 @@ function App() {
  
     if(firebaseCurrentAuth=="ログイン"){
       return(
-        <li class="header-item"><a href="auth/register">{firebaseCurrentAuth}</a></li>
+        <li class="header-item"><a href="/auth/register">{firebaseCurrentAuth}</a></li>
       )
     }else{
       return(
-        <li class="header-item"><a href="auth/mypage">{firebaseCurrentAuth}</a></li>
+        <li class="header-item"><a href="/auth/mypage">{firebaseCurrentAuth}</a></li>
       )
     }
       
@@ -105,6 +101,7 @@ function App() {
         <Route path="auth/login" element={<Login />}/>
         <Route path="auth/register" element={<Register/>}/>
         <Route path="auth/mypage" element={<MyPage/>} />
+        <Route path="/loadqr" element={<LoadQR/>}/>
         <Route path="/create" element={<AuthProvider><CreateRoom/></AuthProvider>}/>
       </Routes>
     </div>

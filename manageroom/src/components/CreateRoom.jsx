@@ -3,18 +3,20 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState } from 'react';
 import { useAuthContext } from '../context/AuthContext';
 
+
 const CreateRoom = () =>{
     const {user} = useAuthContext();
-    const [loginbool,setLoginBool] = useState("false");
-    let a = "false";
+    let returnvalue = {
 
-    
+    };
     function sayhello(id){
-        console.log({id});
+        console.log(returnvalue[id])
+        if(returnvalue[id] == (<SeatBox setseat="nothing"/>)){
+            console.log("なし")
+        }
     }
     const SeatBox = (props) =>{
         var seatstatus = props.setseat;
-        var onClick = props.onclick;
         var id = props.id;
         if(seatstatus == "true"){
             return(
@@ -34,21 +36,15 @@ const CreateRoom = () =>{
     }
     
     const SeatRendar= ()=>{
-        const number =[]
         for (let i = 0;i < 3000;i++){
-            console.log("ここだよ")
-            number.push(<SeatBox setseat="false" id={i}/>)
-            // if(i % 2 == 0){
-            //     if(i % 4 == 0){
-            //         number.push(<SeatBox setseat="false"/>)
-            //     }else{
-            //         number.push(<SeatBox setseat="nothing"/>)
-            //     }
-            // }else{
-            //     number.push(<SeatBox setseat="true"/>)
-            // }
+            if(returnvalue[i] === undefined){
+                returnvalue[i] = {component: (<SeatBox setseat="false" id={i}/>)};
+            }
+            // console.log(returnvalue)
         }
-        return(number)
+        
+        
+        return(returnvalue[1]["component"]);
     }
     const JudgeDisplay = ()=>{
         if(user){

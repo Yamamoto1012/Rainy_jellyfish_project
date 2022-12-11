@@ -19,7 +19,6 @@ export const MyPage = () => {
     const auth = getAuth();
     const inputUserNameRef = useRef(null);
     const [displayName,setDisplayName] = useState();
-    const [displayNamelocal,setDisplayNameLocal] = useState();
     let isChangedProfilebool = false;
 
     //FirbaseAuthの情報を取得
@@ -39,7 +38,7 @@ export const MyPage = () => {
     });
 
     const SaveProfile =() =>{
-     updateProfile(auth.currentUser, {
+    updateProfile(auth.currentUser, {
             displayName:  inputUserNameRef.current.value
           }).then((userCredential) => {
             // Profile updated!
@@ -80,20 +79,13 @@ export const MyPage = () => {
     })
   return (
     <div>
-      
-          <Navbar/>
+        <Box>
           <Stack direction="row" spacing={2} justifyContent="space-between">
             <Sidebar/>
             <Feed/>
             <Rightbar/>
           </Stack>
-        
-        <h1>Hi,{displayName}!</h1>
-        <input type="text" placeholder="username" name="password" ref={inputUserNameRef}/> 
-        <button onClick={SaveProfile}>setusername</button>
-        <h2>作成した座席表一覧</h2> 
-        <h2>アカウント処理</h2>
-        <button onClick={SignOut}>SignOut</button>
+        </Box>
     </div>
   )
 }

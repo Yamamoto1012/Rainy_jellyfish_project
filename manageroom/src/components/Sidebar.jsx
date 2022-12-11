@@ -15,6 +15,7 @@ import {
     } from '@mui/icons-material';
 
 
+    
 export const Sidebar = () => {
 return (
     <Box flex={1} p={2} sx={{display: {xs:"none",sm:"block"}}}>
@@ -27,7 +28,7 @@ return (
                     <ListItemText primary="Homepage" />
                 </ListItemButton>
             </ListItem>
-            <ListItemButton compnent="a" href="#Profile">
+            <ListItemButton compnent="a" href="Profile">
                     <ListItemIcon>
                         <AccountBox/>
                     </ListItemIcon>

@@ -1,3 +1,6 @@
+#　開発者
+Takuchan https://github.com/Takuchan
+
 # Rainy_jellyfish_project
 学内の自習室の空き状況確認ウェブアプリ
 

@@ -42,8 +42,6 @@ function Main(){
         }else{
             console.log("存在しない")
         }
-        
-
     });
 
     function changeStatus(props){
@@ -51,14 +49,13 @@ function Main(){
             //もし押したボタンのIDに値が入っていなかったら
             seatStatus[props] = true;
         }else{
+            console.log("押された")
             //もし押したボタンIDに値が入っていたら
             if(seatStatus[props]){
                 //押したボタンがTRUEだったら
                 seatStatus[props] = false;
-                // console.log("truemy false");
             }else{
                 seatStatus[props] = true;
-                // console.log("truemy hera");
             }
         }
         setCount((prevCount) => prevCount + 1)
@@ -67,9 +64,7 @@ function Main(){
     const SeatItem = (props) =>{
         const getstatus = props.setstatus;
         const getId = props.id;
-        console.log(seatStatus)
         if(seatStatus[getId] == true){
-
             return(
                     <button className='box-Item ful' onClick={() => changeStatus(getId)}></button>
             )

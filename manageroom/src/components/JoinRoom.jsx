@@ -9,7 +9,7 @@ import QrReader from 'react-qr-reader';
 import LOGO from '../images/logo.PNG'
 import { useRef } from 'react';
 
-
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const JoinRoom = () =>{
   
@@ -38,8 +38,26 @@ const JoinRoom = () =>{
   }
 
 
+
+  const [firebaseCurrentAuth,setFirebaseCurrentAuth] = useState("ログイン");
+
+  onAuthStateChanged(getAuth(), (user) => {
+    if (user) {
+      setFirebaseCurrentAuth(user.displayName);
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
+
+  const user = false;
+
+
+
     return (
       <div>
+   
             <div className="card">
                   <div className='content'>
                   <img src={LOGO} />

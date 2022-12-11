@@ -3,6 +3,12 @@
 .card {
   padding-top: 40px;
 }
+.card img{
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
   .content{
     
     text-align: center;
@@ -12,7 +18,7 @@
     right: 0;
     margin: auto;
     width: 300px;
-    height: 500px;
+    height: 550px;
     border: 12px dashed #FFE15D;
     border-radius: 36px;
   }

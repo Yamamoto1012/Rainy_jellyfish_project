@@ -34,3 +34,26 @@ header {
 .header-item a {
   color: white;
 }
+
+.center{
+  text-align: center;
+}
+.radius{
+  border-radius: 50px;
+}
+.paddingBig{
+  padding: 50px;
+}
+.createbutton{
+  padding: 12px 24px;
+  margin: 0 auto;
+  text-align: center;
+  color: #fff;
+  background-color: #eb6100;
+  width: 150px;
+  cursor: pointer;
+}
+.createbutton:hover{
+  color: #fff;
+  background: #f56500;
+}

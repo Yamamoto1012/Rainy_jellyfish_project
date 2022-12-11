@@ -36,7 +36,7 @@ export const Feed = () => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" compnent="a" href="/createroom">作成</Button>
+        <Button size="small" compnent="a" href="/Create">作成</Button>
         <Button size="small">確認</Button>
       </CardActions>
     </Card>

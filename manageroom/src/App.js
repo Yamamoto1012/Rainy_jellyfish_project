@@ -14,6 +14,7 @@ import Register from "./components/Register";
 import MyPage from "./components/MyPage";
 import CreateRoom from "./components/CreateRoom";
 import LoadQR from "./components/LoadQR";
+import Profile from "./components/Profile";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -49,7 +50,6 @@ function App() {
       // ...
     }
   });
- 
 
   const user = false;
   const Loginbutton = () =>{
@@ -102,6 +102,7 @@ function App() {
         <Route path="auth/mypage" element={<MyPage/>} />
         <Route path="/loadqr" element={<LoadQR/>}/>
         <Route path="/create" element={<AuthProvider><CreateRoom/></AuthProvider>}/>
+        <Route path="auth/Profile" element={<Profile/>}/>
       </Routes>
     </div>
     </BrowserRouter>

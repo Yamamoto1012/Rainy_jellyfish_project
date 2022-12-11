@@ -8,7 +8,7 @@ import chairIcon from '../images/chair.PNG'
 //このプログラムは表の画面で、座席の混雑状況を把握できる。
 
 const Main = () => {
-    const location = useLocation();
+    const location = useLocation(); //座席表作成画面で飛んできた時に必要になるパス
     const id = Number(location.state)
     
     

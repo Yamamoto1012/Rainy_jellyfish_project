@@ -17,28 +17,6 @@ const JoinRoom = () =>{
   const [keySt,inputKey] = useState("");
   const navigation  = useNavigate();
 
-  const upData = () =>{
-    const db = getDatabase();
-    set(ref(db,"users/"+"taku/"+"roomId"),{
-      roomkey:"hogehoge",
-      roomname: "金沢工業大学テスト",
-      seat: "bokeh",
-      data: "data"
-    });
-    set(ref(db,"users/"+"taku/"+"roomId/timestamp"),{
-      20221208:"09001201"
-    });
-    set(ref(db,"users/"+"taku/"+"roomId/currentTime"),{
-      20221208:"0900"
-    });
-    // for (var i = 0; i < 10; i++){
-    //   set(ref(db,"users/"+"aho/"+"tinch/data"),{
-    //     i: "true"
-    //   })
-    // }
-  }
-
-
 
   const isExist = () => {
     const db = getDatabase();
@@ -78,7 +56,7 @@ const JoinRoom = () =>{
                       <div className='line'></div>
                   </div>
                   <div className='qrimage'>
-                    <a href='loadqr'><img src={qrIcon} onClick={upData}></img></a>
+                    <a href='loadqr'><img src={qrIcon}></img></a>
                   </div>
                   </div>
               </div>

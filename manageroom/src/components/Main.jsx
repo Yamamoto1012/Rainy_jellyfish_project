@@ -5,46 +5,89 @@ import JoinRoom from './JoinRoom';
 import "../components/css/main.css"
 import chairIcon from '../images/chair.PNG'
 
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useState ,useEffect,useRef} from 'react';
+import { useNavigate } from 'react-router';
+import {getDatabase ,ref ,set,onValue,getFirebase,push} from "firebase/database";
+
 //このプログラムは表の画面で、座席の混雑状況を把握できる。
 
-const Main = () => {
+function Main(){
     const location = useLocation(); //座席表作成画面で飛んできた時に必要になるパス
-    const id = Number(location.state)
-    
-    
-    const SeatBox = (props) =>{
-        var seatstatus = props.setseat;
-        if(seatstatus == "true"){
+  
+    let todos = []
+    let seatStatus = useRef()
+    const [count,setCount] = useState(0);
+    let roomnameRef = useRef();
+    let postKey = useRef();
+    let toUid = useRef();
+    let inroomName = useRef();
+
+    const roomKey = String(location.getRoomOwnername)
+    const roomName = location.state
+    roomnameRef = roomName["getRoomname"];
+    postKey = roomName["postKey"];
+    toUid = roomName["myuid"];
+
+    const db = getDatabase();
+    const starCountRef = ref(db, "users/"+toUid + "/" + postKey);
+    onValue(starCountRef, (snapshot) => {
+        if(snapshot){
+        const data = snapshot.val();
+        inroomName = data["getRoomname"];
+        if(data["data"]){
+            seatStatus = data["data"]
+        }
+        
+        }else{
+            console.log("存在しない")
+        }
+        
+
+    });
+
+    function changeStatus(props){
+        if(seatStatus[props] === undefined){
+            //もし押したボタンのIDに値が入っていなかったら
+            seatStatus[props] = true;
+        }else{
+            //もし押したボタンIDに値が入っていたら
+            if(seatStatus[props]){
+                //押したボタンがTRUEだったら
+                seatStatus[props] = false;
+                // console.log("truemy false");
+            }else{
+                seatStatus[props] = true;
+                // console.log("truemy hera");
+            }
+        }
+        setCount((prevCount) => prevCount + 1)
+    }
+
+    const SeatItem = (props) =>{
+        const getstatus = props.setstatus;
+        const getId = props.id;
+        console.log(seatStatus)
+        if(seatStatus[getId] == true){
+
             return(
-                <div className='box-Item'></div>
-              )
-        }else if(seatstatus == "false"){
-            return(
-                <div className='box-Item ful'></div>
+                    <button className='box-Item ful' onClick={() => changeStatus(getId)}></button>
             )
-        }else if(seatstatus == "nothing"){
+        }else{
             return(
-                <div className='box-Item nothing'></div>
+                    <button className='box-Item' onClick={() => changeStatus(getId)}></button>
             )
         }
         
     }
-    const SeatRendar= ()=>{
-        const number =[]
-        for (let i = 0;i < 3000;i++){
-            if(i % 2 == 0){
-                if(i % 4 == 0){
-                    number.push(<SeatBox setseat="false"/>)
-                }else{
-                    number.push(<SeatBox setseat="nothing"/>)
-                }
-            }else{
-                number.push(<SeatBox setseat="true"/>)
-            }
+    const ClickSeatBox = () =>{
+        // const [todosState,setTodosState] = useState([]);
+        for(let i = 0;i < 3000;i++){
+            todos[i] = (<SeatItem id={i}/>)
         }
-        return(number)
+        return(todos)
     }
-    
+
     return(
         <div>
             <section>
@@ -57,7 +100,7 @@ const Main = () => {
             </div>
             <div className='seatrender'>
                 <div className='item'>
-                    <SeatRendar/>
+                    <ClickSeatBox/>
                 </div>
             </div>
             <div className='title'>

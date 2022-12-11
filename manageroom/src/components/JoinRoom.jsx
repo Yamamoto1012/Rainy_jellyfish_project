@@ -7,6 +7,7 @@ import {getDatabase ,ref ,set,onValue} from "firebase/database";
 import { useState } from 'react';
 import QrReader from 'react-qr-reader';
 import LOGO from '../images/logo.PNG'
+import { useRef } from 'react';
 
 
 
@@ -14,26 +15,24 @@ const JoinRoom = () =>{
   
   var [roomId,inputroomId] = useState("aho");
 
-  const [keySt,inputKey] = useState("");
+  const keySt = useRef();
   const navigation  = useNavigate();
 
 
   const isExist = () => {
     const db = getDatabase();
-    const getvalue = ref(db,"users/"+"taku/"+"roomId/roomkey");
+    const getvalue = ref(db,"users/keylist/"+keySt.current.value);
     onValue(getvalue,(snapshot) =>{
       const data = snapshot.val()
-      
+      console.log(data)
       if(data == null){
         alert("data nothing")
       }else{
-        if(data != keySt){
-          alert("miss your key")
-        }else{
-          //画面遷移
-          navigation("/main",{state:2});
-
-        }
+        alert("dataあり！")
+        // console.log(data);
+     
+          // 画面遷移
+          navigation("/main",{state: data});
       }
     })
   }
@@ -44,7 +43,7 @@ const JoinRoom = () =>{
             <div className="card">
                   <div className='content'>
                   <img src={LOGO} />
-                  <input type="name" placeholder="room seacret word.." value={keySt} onChange={(event) => inputKey(event.target.value)}/>
+                  <input type="name" placeholder="room seacret word.." ref={keySt}/>
                   
                   <div className='submitRoomKey' onClick={isExist}>混雑状況を確認</div>
                   <div className="gray">

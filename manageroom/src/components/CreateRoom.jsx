@@ -3,7 +3,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState ,useEffect,useRef} from 'react';
 import { useNavigate } from 'react-router';
 import { useAuthContext } from '../context/AuthContext';
-import {getDatabase ,ref ,set,onValue,getFirebase,push} from "firebase/database";
+import {getDatabase ,ref ,set,onValue,getFirebase,push, update} from "firebase/database";
 
 const CreateRoom = () =>{
 
@@ -13,6 +13,7 @@ const CreateRoom = () =>{
     const [count,setCount] = useState(0);
     const roomname = useRef();
     const roomOwnerName = useRef();
+    const roomkey = useRef();
 
     const navigation  = useNavigate();
 
@@ -32,10 +33,10 @@ const CreateRoom = () =>{
             }
         }
         setCount((prevCount) => prevCount + 1)
-        console.log(typeof seatStatus);
+        console.log(seatStatus);
     }
     function CreateDatabase() {
-        if(roomname.current.value && roomOwnerName.current.value){
+        if(roomname.current.value && roomOwnerName.current.value && roomkey.current.value){
             // const db = getDatabase();
             // set(ref(db,"users/"+"takumi"+"/roomId"),{
             //     roomkey:"hogehoge",
@@ -49,21 +50,40 @@ const CreateRoom = () =>{
             delete datas.current;
             
 
-            const getRoomname = roomname.current.value.toString();
+            const getRoomname = roomname.current.value.toString(); //Roomの乱数ID格納BOX
             const getRoomOwnername = roomOwnerName.current.value.toString();
+            const getRoomKey = roomkey.current.value.toString();
+            const myuid = user.uid;
             const db = getDatabase();
             const dbref = ref(db,"users/"+user.uid);
             const newPostRef = push(dbref);
+
+            const postKey = newPostRef.key;
             set(newPostRef,{
             getRoomOwnername,
             getRoomname,
-            roomkey:"hogehoge",
+            getRoomKey,
             data: datas,
             });
 
+            const starCountRef = ref(db, 'users/keylist');
+            onValue(starCountRef, (snapshot) => {
+              const data = snapshot.val();
+              const maindbRef = ref(db,"users/keylist/" + getRoomKey);
+              if(data == null){
+                set(maindbRef,{getRoomname,postKey,myuid});
+                console.log("新しくデータベース作成 keylist");
+              }else{
+                update(maindbRef,{getRoomname,postKey,myuid});    
+                console.log("データベース更新 keylist");
+              }
+            });
 
-            navigation("/main",{state:dbref + "/" + newPostRef.key});
+            navigation("/main",{roomkey:getRoomKey,postkey: postKey ,uid:myuid});
+
             
+
+                  
         }else{
             alert("入力漏れがあります")
         }
@@ -74,7 +94,6 @@ const CreateRoom = () =>{
         if(seatStatus[getId] == true){
 
             return(
-      
                     <button className='box-Item ful' onClick={() => changeStatus(getId)}></button>
             )
         }else{
@@ -111,6 +130,8 @@ const CreateRoom = () =>{
                 <input type="text" ref={roomname}></input>
                 <h2>管理者名</h2>
                 <input type="text" ref={roomOwnerName}></input>
+                <h2>ルームキー（このキーを入力すると誰でも自習室状況を確認できるようになります。記号、大小文字、数字を使うことをおすすめします）</h2>
+                <input type="text" ref={roomkey} placeholder="日本語可。"></input>
                 <div className='paddingBig'>
                     <div className='createbutton radius' onClick={CreateDatabase}>座席作成</div>
                 </div>

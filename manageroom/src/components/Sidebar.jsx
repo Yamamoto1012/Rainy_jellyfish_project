@@ -21,11 +21,11 @@ return (
     <Box flex={1} p={2} sx={{display: {xs:"none",sm:"block"}}}>
         <List>
             <ListItem disablePadding>
-                <ListItemButton compnent="a" href="#home">
+                <ListItemButton compnent="a" href="joinRoom">
                     <ListItemIcon>
                         <Home/>
                     </ListItemIcon>
-                    <ListItemText primary="Homepage" />
+                    <ListItemText primary="Home" />
                 </ListItemButton>
             </ListItem>
             <ListItemButton compnent="a" href="Profile">

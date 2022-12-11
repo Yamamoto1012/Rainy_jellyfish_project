@@ -103,6 +103,7 @@ function App() {
         <Route path="/loadqr" element={<LoadQR/>}/>
         <Route path="/create" element={<AuthProvider><CreateRoom/></AuthProvider>}/>
         <Route path="auth/Profile" element={<Profile/>}/>
+        <Route path="auth/joinRoom" element={<JoinRoom/>}/>
       </Routes>
     </div>
     </BrowserRouter>

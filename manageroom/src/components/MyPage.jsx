@@ -4,6 +4,17 @@ import { getAuth, onAuthStateChanged ,updateProfile,signOut} from "firebase/auth
 import { useRef } from 'react';
 
 
+import {
+  Box,
+  Button,
+  Stack
+} from "@mui/material";
+import styled from "@emotion/styled";
+import Sidebar from './Sidebar';
+import Feed from './Feed';
+import Rightbar from './Rightbar';
+import Navbar from './Navbar';
+
 export const MyPage = () => {
     const auth = getAuth();
     const inputUserNameRef = useRef(null);
@@ -53,8 +64,30 @@ export const MyPage = () => {
         // An error happened.
       });
     }
+
+
+    const TextButton = styled(Button)`
+      text-transform: none;
+    `;
+
+    const BlueButton = styled(Button) ({
+      backgroundColor:"skyblue",
+          color:"#888",
+          margin:5,
+          "&:hover": {
+            backgroundColor:"lightblue"
+          },
+    })
   return (
     <div>
+      
+          <Navbar/>
+          <Stack direction="row" spacing={2} justifyContent="space-between">
+            <Sidebar/>
+            <Feed/>
+            <Rightbar/>
+          </Stack>
+        
         <h1>Hi,{displayName}!</h1>
         <input type="text" placeholder="username" name="password" ref={inputUserNameRef}/> 
         <button onClick={SaveProfile}>setusername</button>
